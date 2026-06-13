@@ -1,0 +1,663 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f7fc;
+    color:#333;
+}
+/* ==========================================================================
+   Desktop Navbar Styles (Aapke original code ko merge aur clean kiya hai)
+   ========================================================================== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #0f172a; /* Aapka dark blue background */
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+nav h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #38bdf8; /* Aapka sky blue hover color */
+}
+
+/* Hamburger Toggle Button (Badi screen par hide rahega) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   📱 Mobile Responsive Styles (768px aur usse choti screen ke liye)
+   ========================================================================== */
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 5% !important;
+        display: flex !important;             
+        flex-direction: row !important;      
+        justify-content: space-between !important; 
+        align-items: center !important;       
+        text-align: left !important;         
+        position: relative !important;       
+    }
+
+    nav h2 {
+        margin: 0 !important;
+        text-align: left !important;         
+        display: block !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column !important;    
+        justify-content: space-between !important;
+        width: 25px !important;               
+        height: 18px !important;              
+        cursor: pointer !important;
+        margin: 0 !important;                
+    }
+
+    .menu-toggle .bar {
+        height: 3px;
+        width: 100%;
+        background-color: white; 
+        border-radius: 2px;
+    }
+
+    /* 📋 THEME MATCHED DESIGN: Black hata kar website ka dark blue color lagaya */
+    nav ul {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100% !important;      
+        margin-top: -2px !important; 
+        left: 0 !important;        
+        width: 100% !important;    
+        background: #0f172a !important; /* 👈 Black hata kar website ka original dark blue color diya hai */
+        padding: 15px 5% !important; 
+        box-sizing: border-box !important;
+        text-align: left !important; 
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4) !important; /* Niche ek premium dark shadow */
+        z-index: 9999 !important;    
+    }
+
+    /* JavaScript toggle logic activation */
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 6px 0 !important;
+        margin-left: 0 !important;          
+        width: 100% !important;
+    }
+
+    /* Dropdown ke normal links */
+    nav ul li a {
+        font-size: 16px;
+        display: block;
+        padding: 12px 15px !important; 
+        color: #ffffff !important;    /* Links ka color pure white kiya readability ke liye */
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 12px !important; 
+        transition: all 0.2s ease;
+    }
+
+    /* ACTIVE & HOVER LINK EFFECT: Sky Blue color tabhi dikhega jab user touch karega */
+    nav ul li a:hover {
+        background: rgba(56, 189, 248, 0.15) !important; /* Touch karne par halka sky-blue translucent background */
+        color: #38bdf8 !important; /* Text color aapka original sky blue ho jayega */
+    }
+}
+
+/* Hero Section */
+#home {
+    position: relative !important; /* Icons ko sahi position par rakhne ke liye */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; /* Floating icons screen se bahar nahi jayenge */
+    background: linear-gradient(-45deg, #0f172a, #1e3a8a, #0b1329, #1e293b);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite; /* Dynamic background wave effect */
+    color: white;
+}
+
+/* 🌀 Moving Background Animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 💎 Floating Icons Container Base Styling */
+.hero-shapes {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+    z-index: 1 !important;
+}
+
+.shape {
+    position: absolute !important;
+    color: rgba(56, 189, 248, 0.15); /* Sky blue subtle opacity look */
+    font-family: monospace;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Har ek code symbol ko unki perfect side positions mili */
+.html-icon { font-size: 60px; top: 25% !important; left: 15% !important; animation: floatY 6s ease-in-out infinite; }
+.css-icon { font-size: 80px; top: 30% !important; right: 15% !important; animation: floatY 8s ease-in-out infinite 1s; }
+.js-icon { font-size: 50px; bottom: 25% !important; left: 20% !important; animation: floatY 7s ease-in-out infinite 0.5s; }
+.react-icon { font-size: 70px; bottom: 20% !important; right: 25% !important; animation: floatY 9s ease-in-out infinite 2s; }
+
+@keyframes floatY {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.hero-content {
+    position: relative !important;
+    z-index: 2 !important; /* Text hamesha icons ke upar rahega */
+    margin-top: -50px !important; /* 👈 YEH NAYA BADLAV HAI: Isse aapka naam upar chala jayega aur extra space khatam ho jayegi */
+}
+
+/* 🖱️ Animated Mouse Scroll Down Indicator Style */
+.scroll-indicator {
+    position: absolute !important;
+    bottom: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px;
+    z-index: 2 !important;
+}
+
+.scroll-indicator p {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.mouse {
+    width: 24px;
+    height: 38px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    position: relative !important;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background-color: #38bdf8; 
+    border-radius: 2px;
+    position: absolute !important;
+    top: 6px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 1; top: 6px; }
+    100% { opacity: 0; top: 18px; }
+}
+
+#home h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+#home h3{
+    font-size:1.5rem;
+    margin-bottom:15px;
+}
+
+#home p{
+    max-width:600px;
+    margin-bottom:25px;
+}
+
+#home a{
+    display:inline-block;
+    margin:10px;
+    padding:12px 25px;
+    background:#38bdf8;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+#home a:hover{
+    background:#0284c7;
+}
+
+/* Sections */
+section{
+    padding:80px 10%;
+}
+
+section h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#0f172a;
+}
+
+/* ==========================================================================
+   ✨ About Me Section Symmetrical Cards Layout (Intro Packed In Box)
+   ========================================================================== */
+.about-container {
+    display: flex !important;
+    gap: 40px !important;
+    align-items: flex-start !important; 
+    justify-content: space-between !important;
+    margin-top: 40px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 📋 LEFT SIDE STYLING (Vertical Rectangles Stack) */
+.about-text {
+    flex: 1 !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important; /* Top intro card aur niche ke cards container ke beech ka gap */
+}
+
+/* 🛠️ Intro Content Text Card Box */
+.about-personal-intro-card {
+    background: #ffffff !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    transition: all 0.4s ease !important; /* Isse background dark transition smooth hoga */
+}
+
+/* 🎯 CHANGES HERE: Intro box par bhi HTML5 jaisa dark background aur neon shadow effect */
+.about-personal-intro-card:hover {
+    transform: translateY(-3px) !important;
+    background: #0f172a !important;        /* Pure dark blue background hover par */
+    border-color: #38bdf8 !important;      /* Border frame color sky blue */
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2) !important; /* Glowing ambient effect underneath */
+}
+
+.about-personal-intro-card p {
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+    color: #0f172a !important;
+    text-align: left !important;
+    font-weight: 500;
+    margin: 0 !important;
+    transition: color 0.3s ease !important; /* Text transition ko clear karne ke liye */
+}
+
+/* Hover hone par normal text white ho jayega aur naam sky-blue hi chamkega */
+.about-personal-intro-card:hover p {
+    color: #ffffff !important;
+}
+
+.about-personal-intro-card:hover p strong {
+    color: #38bdf8 !important;
+}
+
+.about-personal-intro-card strong {
+    color: #38bdf8; 
+    transition: color 0.3s ease !important;
+}
+
+.text-card-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+.about-text-card {
+    background: #ffffff !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    transition: all 0.4s ease !important; 
+}
+
+/* Left side ke rectangle cards par HTML5 jaisa dark theme hover aur neon shadow lagaya */
+.about-text-card:hover {
+    transform: translateY(-3px) !important;
+    background: #0f172a !important;        
+    border-color: #38bdf8 !important;      
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2) !important; 
+}
+
+/* Hover hone par rectangle cards ke andar ka text color smoothly invert hoga */
+.about-text-card:hover .text-card-info h3 {
+    color: #ffffff !important;             
+}
+
+.about-text-card:hover .text-card-info p {
+    color: #94a3b8 !important;             
+}
+
+.text-card-icon {
+    font-size: 24px;
+    margin-top: 2px;
+}
+
+.text-card-info {
+    text-align: left !important;
+}
+
+.text-card-info h3 {
+    margin: 0 0 6px 0 !important;
+    font-size: 1.1rem !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    transition: color 0.3s ease !important; 
+}
+
+.text-card-info p {
+    margin: 0 !important;
+    font-size: 0.9rem !important;
+    color: #64748b !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+    transition: color 0.3s ease !important;
+}
+
+/* 📊 RIGHT SIDE STYLING (2x2 Grid Layout Framework) */
+.about-skills {
+    flex: 1 !important; 
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 20px !important;
+}
+
+.skill-card {
+    background: #ffffff !important;
+    padding: 25px 20px !important;
+    border-radius: 16px !important;
+    text-align: left !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.skill-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.skill-card h3 {
+    font-size: 1.2rem !important;
+    color: #0f172a !important;
+    margin: 0 0 8px 0 !important;
+    font-weight: 700 !important;
+}
+
+.skill-card p {
+    font-size: 0.9rem !important;
+    color: #64748b !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+}
+
+.skill-card:hover {
+    transform: translateY(-8px) !important;
+    background: #0f172a !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2) !important;
+}
+
+.skill-card:hover h3 { color: #ffffff !important; }
+.skill-card:hover p { color: #94a3b8 !important; }
+
+/* 📱 MOBILE RESPONSIVENESS */
+@media (max-width: 968px) {
+    .about-container {
+        flex-direction: column !important; 
+        gap: 40px !important;
+    }
+    .about-skills {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .about-skills {
+        grid-template-columns: 1fr !important; 
+    }
+}
+/* ==========================================================================
+   ✨ Modern Skills Section CSS (Desktop & Mobile Square Framework)
+   ========================================================================== */
+.about-skills {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important; /* Badi screen par auto adjust hoga */
+    gap: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 30px;
+}
+
+/* 🔮 INDIVIDUAL GLOWING SKILL CARD (Desktop Base Styles) */
+.skill-card {
+    background: #ffffff !important;
+    padding: 30px 20px !important;
+    border-radius: 16px !important;
+    text-align: center !important; /* Content center kiya taaki square format me clean dikhe */
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    aspect-ratio: 1 / 1 !important; /* 👈 Isse desktop aur laptop par bhi perfect square shape locks rahegi */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.skill-icon {
+    font-size: 32px !important;
+    margin-bottom: 10px !important;
+    display: inline-block;
+}
+
+.skill-card h3 {
+    font-size: 1.2rem !important;
+    color: #0f172a !important;
+    margin: 0 0 8px 0 !important;
+    font-weight: 700 !important;
+}
+
+.skill-card p {
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+
+/* 🎯 HOVER EFFECT: Card upar uthega aur dark background ke sath sky-blue glow karega */
+.skill-card:hover {
+    transform: translateY(-8px) !important; /* Card smoothly upar floating feel dega */
+    background: #0f172a !important; /* Tech dark theme color panel */
+    border-color: #38bdf8 !important; /* Border frame sky-blue ho jayega */
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2) !important; /* Neon glow effect underneath */
+}
+
+/* Hover hone par cards ke andar ka text color smoothly invert hoga */
+.skill-card:hover h3 { color: #ffffff !important; }
+.skill-card:hover p { color: #94a3b8 !important; }
+
+/* ==========================================================================
+   📱 MOBILE RESPONSIVENESS (Har chote smart phone par strict 2x2 symmetry)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .about-skills {
+        grid-template-columns: repeat(2, 1fr) !important; /* 👈 Mobile par strictly ek row me do custom cards aayenge */
+        gap: 15px !important; /* Mobile layouts compact spacing framework */
+    }
+
+    .skill-card {
+        padding: 15px 10px !important;
+        aspect-ratio: 1 / 1 !important; /* Mobile limits square configuration trace keep track */
+    }
+
+    .skill-icon {
+        font-size: 26px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .skill-card h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .skill-card p {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+    }
+}
+
+/* Super low screen sizes configuration track setup balance style lines */
+@media (max-width: 360px) {
+    .about-skills { gap: 10px !important; }
+    .skill-card { padding: 10px 5px !important; }
+    .skill-card h3 { font-size: 0.85rem !important; }
+    .skill-card p { display: none !important; } /* Ekdum narrow screen par text hidden optimize center spaces */
+}
+
+/* Projects (Wapas restore kiya aur link styling jod di) */
+#projects {
+    background: #eef3ff;
+}
+
+#projects div {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#projects h3 {
+    margin-bottom: 10px;
+    color: #1e3a8a;
+}
+
+/* 👈 YEH NAYA CHANGE HAI: Isse projects ke links ki ajeeb lines hat jayengi */
+.project-title-link {
+    text-decoration: none !important; /* Underline hatane ke liye */
+    color: #1e3a8a !important;        /* Aapke h3 ka original dark blue color */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Link par hover karne par sky blue color aayega */
+.project-title-link:hover {
+    color: #38bdf8 !important; 
+}
+
+/* Contact (Wapas restore kiya) */
+#contact {
+    text-align: center;
+}
+
+#contact p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* Footer (Wapas restore kiya) */
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    nav{
+        flex-direction:column;
+    }
+
+    nav ul{
+        margin-top:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    #home h1{
+        font-size:2.2rem;
+    }
+
+    #home h3{
+        font-size:1.2rem;
+    }
+}
